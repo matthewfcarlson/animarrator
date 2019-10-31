@@ -1,0 +1,34 @@
+{
+  "name": "animatorstudio",
+  "version": "1.0.0",
+  "description": "Animation Studio based on NodeJS powered by SVG",
+  "main": "bin/animation-studio",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "bin": {
+    "@matthewfcarlson/animation-studio": "bin/animation-studio",
+    "animation-studio": "bin/animation-studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewfcarlson/animatorstudio.git"
+  },
+  "keywords": [
+    "animation",
+    "svg",
+    "video"
+  ],
+  "author": "Matthew Carlson",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/matthewfcarlson/animatorstudio/issues"
+  },
+  "homepage": "https://github.com/matthewfcarlson/animatorstudio#readme",
+  "dependencies": {
+    "arg": "^4.1.1",
+    "esm": "^3.2.25",
+    "inquirer": "^7.0.0"
+  }
+}
