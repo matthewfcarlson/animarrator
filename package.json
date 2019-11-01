@@ -12,7 +12,6 @@
     "describe": "npm-scripts-info",
     "build": "run-s clean && run-p build:*",
     "build:main": "tsc -p tsconfig.json",
-    "build:module": "tsc -p tsconfig.module.json",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
     "fix:tslint": "tslint --fix --project .",
@@ -24,14 +23,15 @@
     "cov:html": "nyc report --reporter=html",
     "cov:send": "nyc report --reporter=lcov && codecov",
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
-    "doc": "run-s doc:html && open-cli docs/docs/index.html",
+    "doc": "run-s doc:html && open-cli docs/index.html",
     "doc:html": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --out docs/docs",
     "doc:json": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --json docs/docs/typedoc.json",
-    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d docs",
+    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d docs/docs",
     "version": "standard-version",
     "reset": "git clean -dfx && git reset --hard && npm i",
     "clean": "trash build test",
-    "prepare-release": "run-s reset test cov:check doc:html version doc:publish"
+    "prepare-release": "run-s reset test cov:check doc:html version doc:publish",
+    "start": "npm run build && ./build/index.html"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
@@ -49,9 +49,7 @@
   "engines": {
     "node": ">=8.9"
   },
-  "dependencies": {
-    "sha.js": "^2.4.11"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@bitjson/npm-scripts-info": "^1.0.0",
     "@bitjson/typedoc": "^0.15.0-0",
@@ -74,10 +72,10 @@
   "ava": {
     "failFast": true,
     "files": [
-      "build/main/**/*.spec.js"
+      "build/**/*.spec.js"
     ],
     "sources": [
-      "build/main/**/*.js"
+      "build/**/*.js"
     ]
   },
   "config": {
