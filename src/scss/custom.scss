@@ -33,9 +33,23 @@ $spacers: (
   color:white;
 }
 
+.bg-dark {
+  background-color:#444;
+  color:white;
+}
+
+.bg-gray {
+  background-color: #888;
+}
+
 a.link-white, .link-white a{
   color:white;
 }
 a.link-white:hover, .link-white a:hover{
   color:blue;
 }
+
+.mih-80 {
+  min-height:80vh;
+}
+
