@@ -1,10 +1,3 @@
-# ANIMATION STUDIO
+# animator-studio
 
-Animation Studio 
-
-## TODO
-
-- Better name
-- Logo?
-- Setup video production pipeline
-- Allow importing SVG files
+A NodeJS powered animation studio app for creating animated videos from SVGs for narrated informational videos
