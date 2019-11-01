@@ -31,7 +31,7 @@
     "reset": "git clean -dfx && git reset --hard && npm i",
     "clean": "trash build test docs",
     "prepare-release": "run-s reset test clean cov:check doc:html version doc:publish build:prod",
-    "start": "npm run build && node src/server.js && open-cli localhost:3000"
+    "start": "node src/server.js && open-cli localhost:3000"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
