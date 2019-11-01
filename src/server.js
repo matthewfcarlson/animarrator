@@ -7,9 +7,10 @@ const build_folder = path.resolve(__dirname, '../docs')
 const doc_folder = path.join(build_folder, 'docs')
 
 app.get("/", (req, res) => {
-    res.redirect("/docs/")
+    res.redirect("/docs/"); // this simulates being at a different address at github
 });
 app.get("/docs/", (req, res) => {
+    // We should have an index html because of the pre-render plugin, but let's go to app by default
     res.sendFile(path.join(build_folder, "app.html"));
 });
 app.get("/docs/docs/", (req, res) => {
