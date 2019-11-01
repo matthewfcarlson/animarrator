@@ -64,7 +64,7 @@ webpackConfig.module.rules = [
         loader: "file-loader",
         options: {
           name: '[contenthash].[ext]',
-          publicPath: "/public/img",
+          publicPath: "public/img",
           outputPath: "public/img/"
         }
       },
@@ -141,10 +141,10 @@ webpackConfig.plugins = [
       minifyURLs: true
     }
   }),
-  new CompressionPlugin({
+  /*new CompressionPlugin({
     filename: "[path].gz[query]"
     //test: /\.js$/
-  }),
+  }),*/
   new webpack.DefinePlugin({
     "process.env": env
   }),

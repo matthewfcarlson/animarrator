@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "name": "animator-studio",
+  "description": "A NodeJS powered animation studio app for creating animated videos from SVGs for narrated informational videos",
+  "icons": {
+    "60": "/public/firefox_app_60x60.png",
+    "128": "/public/firefox_app_128x128.png",
+    "512": "/public/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": null,
+    "url": null
+  }
+}
