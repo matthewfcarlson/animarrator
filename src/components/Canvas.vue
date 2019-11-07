@@ -71,5 +71,6 @@ export default class Canvas extends Vue {
 <style scoped lang="scss" scoped>
 #drawing-canvas {
   touch-action: none;
+  background-color:white;
 }
 </style>
