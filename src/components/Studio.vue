@@ -6,12 +6,9 @@
                     <!-- write to have a certain aspect ratio of 16:10? -->
                     <Canvas />
                 </div>
-                <div class="bg-info text-center escape-gutters">Scrubber</div>
+                <Scrubber />
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-12 bg-dark mih-80">
-                Sidebar here
-                Settings and whatnot?
-            </div>
+            <SideBar />
         </div>
     </div>
 </template>
@@ -19,10 +16,14 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Canvas from "./Canvas.vue";
+import Scrubber from "./Scrubber.vue";
+import SideBar from "./SideBar.vue";
 
 @Component({
   components: {
-    Canvas
+    Canvas,
+    Scrubber,
+    SideBar
   }
 })
 export default class Studio extends Vue {
