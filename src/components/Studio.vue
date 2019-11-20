@@ -10,6 +10,7 @@
             </div>
             <SideBar />
         </div>
+        
     </div>
 </template>
 
@@ -27,6 +28,7 @@ import SideBar from "./SideBar.vue";
   }
 })
 export default class Studio extends Vue {
-
+    
+    
 }
 </script>
