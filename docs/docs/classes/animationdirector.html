@@ -87,11 +87,10 @@
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#_framenumber" class="tsd-kind-icon">_frame<wbr>Number</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#_scrubtime" class="tsd-kind-icon">_scrub<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#animateframeid" class="tsd-kind-icon">animate<wbr>Frame<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#animationframe" class="tsd-kind-icon">animation<wbr>Frame</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#frameid" class="tsd-kind-icon">frame<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#framelength" class="tsd-kind-icon">frame<wbr>Length</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#framenumber" class="tsd-kind-icon">frame<wbr>Number</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#framerate" class="tsd-kind-icon">frame<wbr>Rate</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#playing" class="tsd-kind-icon">playing</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="animationdirector.html#_instance" class="tsd-kind-icon">_instance</a></li>
@@ -100,7 +99,6 @@
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animationdirector.html#framenumber" class="tsd-kind-icon">frame<wbr>Number</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="animationdirector.html#isplaying" class="tsd-kind-icon">is<wbr>Playing</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="animationdirector.html#instance" class="tsd-kind-icon">Instance</a></li>
 							</ul>
@@ -112,7 +110,10 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#frame" class="tsd-kind-icon">Frame</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="animationdirector.html#pause" class="tsd-kind-icon">Pause</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="animationdirector.html#play" class="tsd-kind-icon">Play</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="animationdirector.html#reset" class="tsd-kind-icon">Reset</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="animationdirector.html#stop" class="tsd-kind-icon">Stop</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="animationdirector.html#import" class="tsd-kind-icon">Import</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="animationdirector.html#loadaudio" class="tsd-kind-icon">Load<wbr>Audio</a></li>
 							</ul>
 						</section>
 					</div>
@@ -130,7 +131,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L26">director/index.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L18">director/index.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="animationdirector.html" class="tsd-signature-type">AnimationDirector</a></h4>
@@ -141,72 +142,62 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_framenumber" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _frame<wbr>Number</h3>
-					<div class="tsd-signature tsd-kind-icon">_frame<wbr>Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+					<a name="animateframeid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> animate<wbr>Frame<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">animate<wbr>Frame<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L21">director/index.ts:21</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_scrubtime" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _scrub<wbr>Time</h3>
-					<div class="tsd-signature tsd-kind-icon">_scrub<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L22">director/index.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L10">director/index.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="animationframe" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> animation<wbr>Frame</h3>
-					<div class="tsd-signature tsd-kind-icon">animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AnimationFrame</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
+					<div class="tsd-signature tsd-kind-icon">animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AnimationFrame</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L19">director/index.ts:19</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="frameid" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> frame<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">frame<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L17">director/index.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L12">director/index.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="framelength" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> frame<wbr>Length</h3>
-					<div class="tsd-signature tsd-kind-icon">frame<wbr>Length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5000</span></div>
+					<div class="tsd-signature tsd-kind-icon">frame<wbr>Length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L18">director/index.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L11">director/index.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="framenumber" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> frame<wbr>Number</h3>
+					<div class="tsd-signature tsd-kind-icon">frame<wbr>Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L14">director/index.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="framerate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> frame<wbr>Rate</h3>
-					<div class="tsd-signature tsd-kind-icon">frame<wbr>Rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;30</span></div>
+					<div class="tsd-signature tsd-kind-icon">frame<wbr>Rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L20">director/index.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L13">director/index.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="playing" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> playing</h3>
-					<div class="tsd-signature tsd-kind-icon">playing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<div class="tsd-signature tsd-kind-icon">playing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L23">director/index.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L15">director/index.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -216,30 +207,13 @@
 					<div class="tsd-signature tsd-kind-icon">_instance<span class="tsd-signature-symbol">:</span> <a href="animationdirector.html" class="tsd-signature-type">AnimationDirector</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L26">director/index.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L18">director/index.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="framenumber" class="tsd-anchor"></a>
-					<h3>frame<wbr>Number</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> frameNumber<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L49">director/index.ts:49</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="isplaying" class="tsd-anchor"></a>
 					<h3>is<wbr>Playing</h3>
@@ -250,7 +224,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L53">director/index.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L68">director/index.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -267,7 +241,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L31">director/index.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L24">director/index.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="animationdirector.html" class="tsd-signature-type">AnimationDirector</a></h4>
@@ -287,7 +261,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L41">director/index.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L60">director/index.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -304,7 +278,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L61">director/index.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L76">director/index.ts:76</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -334,7 +308,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L73">director/index.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L86">director/index.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -356,7 +330,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L35">director/index.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L54">director/index.ts:54</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="reset" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> Reset</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">Reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L35">director/index.ts:35</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -373,7 +364,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/958bed9/src/director/index.ts#L80">director/index.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L93">director/index.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -381,6 +372,40 @@
 									<p>Stops the animation and resets the frame number</p>
 								</div>
 							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="import" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Import</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">Import<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L30">director/index.ts:30</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="loadaudio" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Load<wbr>Audio</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">Load<wbr>Audio<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/4311d18/src/director/index.ts#L45">director/index.ts:45</a></li>
+								</ul>
+							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -406,19 +431,16 @@
 								<a href="animationdirector.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="animationdirector.html#_framenumber" class="tsd-kind-icon">_frame<wbr>Number</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="animationdirector.html#_scrubtime" class="tsd-kind-icon">_scrub<wbr>Time</a>
+								<a href="animationdirector.html#animateframeid" class="tsd-kind-icon">animate<wbr>Frame<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="animationdirector.html#animationframe" class="tsd-kind-icon">animation<wbr>Frame</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="animationdirector.html#frameid" class="tsd-kind-icon">frame<wbr>Id</a>
+								<a href="animationdirector.html#framelength" class="tsd-kind-icon">frame<wbr>Length</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="animationdirector.html#framelength" class="tsd-kind-icon">frame<wbr>Length</a>
+								<a href="animationdirector.html#framenumber" class="tsd-kind-icon">frame<wbr>Number</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="animationdirector.html#framerate" class="tsd-kind-icon">frame<wbr>Rate</a>
@@ -428,9 +450,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
 								<a href="animationdirector.html#_instance" class="tsd-kind-icon">_instance</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="animationdirector.html#framenumber" class="tsd-kind-icon">frame<wbr>Number</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="animationdirector.html#isplaying" class="tsd-kind-icon">is<wbr>Playing</a>
@@ -450,8 +469,17 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="animationdirector.html#play" class="tsd-kind-icon">Play</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="animationdirector.html#reset" class="tsd-kind-icon">Reset</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="animationdirector.html#stop" class="tsd-kind-icon">Stop</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="animationdirector.html#import" class="tsd-kind-icon">Import</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="animationdirector.html#loadaudio" class="tsd-kind-icon">Load<wbr>Audio</a>
 							</li>
 						</ul>
 					</li>
@@ -459,27 +487,6 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="soundengine.html" class="tsd-kind-icon">Sound<wbr>Engine</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#store" class="tsd-kind-icon">Store</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#debug" class="tsd-kind-icon">debug</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#createlogger" class="tsd-kind-icon">create<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#deepcopy" class="tsd-kind-icon">deep<wbr>Copy</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#find" class="tsd-kind-icon">find</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#pad" class="tsd-kind-icon">pad</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#repeat" class="tsd-kind-icon">repeat</a>
 					</li>
 				</ul>
 			</nav>

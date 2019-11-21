@@ -1,5 +1,6 @@
 <template>
-  <div class>
+  <div class="container">
+    <h1>My Projects</h1>
     <AudioFormInput v-model="file" />
     <p v-if="file">{{file.name}}</p>
   </div>
@@ -17,6 +18,16 @@ import AudioFormInput from './AudioFormInput';
 })
 export default class ProjectViewer extends Vue {
   file: File | null = null;
+  ImportProject () {
+    // A user has a url or JSON file that we need to pass into the director
+  }
+  LoadProject() {
+    // Reset the directory
+    // First try to load the audio into the director
+    // If we are successful, emit a click
+    this.$emit("click");
+
+  }
 }
 </script>
 

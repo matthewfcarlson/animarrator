@@ -2,20 +2,8 @@
   <div id="app" class="container-fluid" style="background-color:white">
     <NavBar />
     <Studio v-if="page == Page.Studio" />
-    <div class="row" v-else-if="page == Page.Help">
-      <h1>Help</h1>
-      <button class="btn" @click="goToProject">Start</button>
-    </div>
-    <div v-else-if="page == Page.GettingStarted">
-      <h1>Getting Started</h1>
-      <button class="btn" @click="goToHelp">Help</button>
-      <button class="btn" @click="goToProject">Start</button>
-    </div>
-    <div v-else-if="page == Page.LoadProject">
-      <h1>Load a Project</h1>
-      <ProjectViewer />
-      <button class="btn" @click="goToStudio">Start</button>
-    </div>
+    <GettingStarted v-else-if="page == Page.GettingStarted" @click="goToProject" />
+    <ProjectViewer v-else-if="page == Page.LoadProject" @click="goToStudio"/>
     <div v-else>
       <h1>Error</h1>
       {{page}}
@@ -30,11 +18,11 @@ import NavBar from './components/NavBar.vue';
 import Studio from './components/Studio.vue';
 import Footer from './components/Footer.vue';
 import ProjectViewer from "./components/ProjectViewer.vue";
+import GettingStarted from "./components/GettingStarted.vue";
 
 enum Page {
-  Help = 1,
+  GettingStarted = 1,
   LoadProject,
-  GettingStarted,
   Studio
 }
 
@@ -43,16 +31,14 @@ enum Page {
     NavBar,
     Studio,
     Footer,
-    ProjectViewer
+    ProjectViewer,
+    GettingStarted
   }
 })
 export default class App extends Vue {
   page: Page = Page.GettingStarted;
   Page = Page; // ugly but works
 
-  goToHelp() {
-    this.page = Page.Help;
-  }
   goToProject() {
     this.page = Page.LoadProject;
   }
