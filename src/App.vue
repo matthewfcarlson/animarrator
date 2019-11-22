@@ -36,7 +36,7 @@ enum Page {
   }
 })
 export default class App extends Vue {
-  page: Page = Page.GettingStarted;
+  page: Page = Page.LoadProject;
   Page = Page; // ugly but works
 
   goToProject() {
