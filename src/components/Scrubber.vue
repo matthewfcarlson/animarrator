@@ -30,7 +30,13 @@
       ></i>
     </div>
     <div class="col-lg-8 text-center">Scrubber goes here</div>
-    <div class="col-lg-1 text-center">Buttons? Load sound?</div>
+    <div class="col-lg-1 text-center">
+       <i
+        class="far fa-hand-scissors fa-2x btn-scrub"
+        @click="split"
+        title="Splits at the current time"
+      ></i>
+    </div>
   </div>
 </template>
 
@@ -88,6 +94,9 @@ export default class Scrubber extends Vue {
     this.isPlaying = false;
     // TODO should I be using vuex?
     this.director.Stop();
+  }
+  split() {
+    this.director.Split();
   }
   // Go to the next section
   next() {

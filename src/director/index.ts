@@ -42,7 +42,13 @@ export class AnimationDirector {
 
     public get CurrentScene() {
         // TODO calculate what scene we are in?
-        return 1;
+        var scene = 1;
+        for (var i=0; i < this.splits.length; i++){
+            const split = this.splits[i];
+            if (split > this.frameNumber) return scene;
+            else scene = i+2;
+        }
+        return scene;
     }
 
     public get MaxScenes() {
@@ -132,6 +138,13 @@ export class AnimationDirector {
     public Stop() {
         this.Pause();
         this.frameNumber = 0;
+    }
+
+    public Split() {
+        const split = this.frameNumber;
+        if (this.splits.indexOf(split) != -1) return; // We can't add a split that already exists?
+        this.splits.push(this.frameNumber);
+        this.splits = this.splits.sort();
     }
 
     public PrevSection() {
