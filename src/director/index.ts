@@ -4,6 +4,7 @@
  */
 
 import AnimationFrame from 'animation-frame';
+import { SoundEngine } from '../sound';
 //const debug = process.env.NODE_ENV !== 'production';
 
 export class AnimationDirector {
@@ -14,15 +15,14 @@ export class AnimationDirector {
     private frameNumber!: number;
     private splits: number[] = []; // the frame numbers that we split at (split starts at that frame)
     private playing!: boolean;
-    private audio!: AudioBuffer | null;
+    private audio: SoundEngine;
     //private startRequestTime = 0;
 
     private static _instance: AnimationDirector;
-    private static audioCtx: AudioContext = (new (window as any).AudioContext()) || null;
-
+    
     private constructor() {
         this.Reset();
-        
+        this.audio = new SoundEngine();
     }
 
     public static get Instance() {
@@ -69,28 +69,23 @@ export class AnimationDirector {
         this.frameRate = 30;
         this.playing = false;
         this.animateFrameId = null;
-        this.audio = null;
         this.splits.splice(0, this.splits.length); // remove all the elements in the array
     }
 
     public static async LoadAudio(blob: ArrayBuffer) {
         // Loads Audio into the project
-        this.Instance.Reset();
-        console.log(blob);
-        console.log(typeof (blob));
-        const data = await this.audioCtx.decodeAudioData(blob);
-        console.log(data);
-        this.Instance.audio = data;
+        this.Instance.Reset();        
 
         // Figures out the number of frames given the frame rate
-        this.Instance.frameLength = data.duration * this.Instance.frameRate;
-        console.log("Duration ", data.duration);
-        console.log("Frames ", data.duration * this.Instance.frameRate);
+        const splits = await this.Instance.audio.LoadSound(blob);
+        const audioDuration = this.Instance.audio.duration;
+        this.Instance.frameLength = audioDuration * this.Instance.frameRate;
+        this.Instance.splits.concat(splits);
+        console.log("Duration ", audioDuration);
+        console.log("Frames ", audioDuration * this.Instance.frameRate);
         console.log("FrameRate ", this.Instance.frameRate);
         console.log("Frames ", this.Instance.frameLength);
-
-        // Gets text to speech for the audio (if enabled)
-        // Finds silence sections in audio and splits it
+        console.log("Splits ", this.Instance.splits);
 
     }
 
@@ -121,6 +116,7 @@ export class AnimationDirector {
         if (this.animationFrame == null) this.animationFrame = new AnimationFrame(this.frameRate);
         this.playing = true;
         console.log(this.audio);
+        this.audio.Play();
         // TODO somehow figure out how to play the audio?
         this.Animate();
     }
@@ -130,6 +126,7 @@ export class AnimationDirector {
      */
     public Pause() {
         if (this.animateFrameId != null && this.animationFrame != null) this.animationFrame.cancel(this.animateFrameId);
+        this.audio.Pause();
     }
 
     /**
@@ -137,6 +134,7 @@ export class AnimationDirector {
      */
     public Stop() {
         this.Pause();
+        this.audio.Stop();
         this.frameNumber = 0;
     }
 
