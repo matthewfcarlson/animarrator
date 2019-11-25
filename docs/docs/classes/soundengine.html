@@ -83,6 +83,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="soundengine.html#audiobuffer" class="tsd-kind-icon">audio<wbr>Buffer</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="soundengine.html#audiosource" class="tsd-kind-icon">audio<wbr>Source</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="soundengine.html#playing" class="tsd-kind-icon">playing</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="soundengine.html#saved_time" class="tsd-kind-icon">saved_<wbr>time</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="soundengine.html#audioctx" class="tsd-kind-icon">audio<wbr>Ctx</a></li>
 							</ul>
 						</section>
@@ -114,7 +116,7 @@
 					<div class="tsd-signature tsd-kind-icon">audio<wbr>Buffer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AudioBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L3">sound/index.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L3">sound/index.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -124,17 +126,37 @@
 					<div class="tsd-signature tsd-kind-icon">audio<wbr>Source<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AudioBufferSourceNode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L4">sound/index.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L4">sound/index.ts:4</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="playing" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> playing</h3>
+					<div class="tsd-signature tsd-kind-icon">playing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L7">sound/index.ts:7</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="saved_time" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> saved_<wbr>time</h3>
+					<div class="tsd-signature tsd-kind-icon">saved_<wbr>time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L8">sound/index.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
 					<a name="audioctx" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> audio<wbr>Ctx</h3>
-					<div class="tsd-signature tsd-kind-icon">audio<wbr>Ctx<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AudioContext</span><span class="tsd-signature-symbol"> =&nbsp;(new (window as any).AudioContext()) || null</span></div>
+					<div class="tsd-signature tsd-kind-icon">audio<wbr>Ctx<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AudioContext</span><span class="tsd-signature-symbol"> =&nbsp;(new (window as any).AudioContext()) ||  (window as any).webkitAudioContext || null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L6">sound/index.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L6">sound/index.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -151,7 +173,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L22">sound/index.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L21">sound/index.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -176,7 +198,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L8">sound/index.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L10">sound/index.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -199,7 +221,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L42">sound/index.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L47">sound/index.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -216,7 +238,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L29">sound/index.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L28">sound/index.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -233,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L37">sound/index.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L42">sound/index.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -244,19 +266,24 @@
 					<a name="seek" class="tsd-anchor"></a>
 					<h3>Seek</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Seek<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">Seek<span class="tsd-signature-symbol">(</span>ms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L58">sound/index.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L80">sound/index.ts:80</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<h5>ms: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the point to seek to in milliseconds</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -273,7 +300,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f78350b/src/sound/index.ts#L50">sound/index.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/matthewfcarlson/animatorstudio/blob/f631abb/src/sound/index.ts#L60">sound/index.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -305,6 +332,12 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="soundengine.html#audiosource" class="tsd-kind-icon">audio<wbr>Source</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="soundengine.html#playing" class="tsd-kind-icon">playing</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="soundengine.html#saved_time" class="tsd-kind-icon">saved_<wbr>time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
 								<a href="soundengine.html#audioctx" class="tsd-kind-icon">audio<wbr>Ctx</a>

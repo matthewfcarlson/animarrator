@@ -105,9 +105,9 @@ export class AnimationDirector {
      * The call back for each animation frame
      * @param time 
      */
-    private Frame(time: any) {
+    private Frame(_time: any) {
         //Figure out how to handle pauses and stops?
-        console.log("Frame time:" + time, "Frame number: " + this.frameNumber);
+        //console.log("Frame time:" + time, "Frame number: " + this.frameNumber);
         //TODO how to signal other parts of system to tick forward at appropriate rate?
         this.frameNumber++;
     }
