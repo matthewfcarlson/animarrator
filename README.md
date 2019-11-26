@@ -1,6 +1,6 @@
 # ANIMATION STUDIO
 
-###*Narration based Animation with minimal effort*
+### *Narration based Animation with minimal effort*
 
 A NodeJS powered animation studio app for creating animated videos from SVGs for narrated informational videos.
 It runs in your browser, using localstorage and files to create and load files.
