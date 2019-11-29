@@ -33,7 +33,8 @@
     "prepare-release": "run-s reset test clean cov:check doc:html version doc:publish build:prod",
     "pre-push": "run-s clean doc:html build:prod",
     "start": "node src/server.js && open-cli localhost:3000",
-    "dev": "run-s clean doc:html build:dev start"
+    "dev": "run-s clean doc:html build:dev start",
+    "create-typing": "dts-gen -m Medya"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
@@ -90,6 +91,7 @@
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^6.0.0",
     "lowdb": "^1.0.0",
+    "meyda": "^4.2.0",
     "microsoft-cognitiveservices-speech-sdk": "^1.8.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",

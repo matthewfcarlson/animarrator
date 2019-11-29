@@ -48,6 +48,7 @@ export default class ProjectViewer extends Vue {
       }
       catch (e){
         self.loading = false;
+        console.log(e);
         self.error = "Was that an audio file? We couldn't read it";
       }
     }

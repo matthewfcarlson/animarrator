@@ -1,22 +1,47 @@
 
+import Meyda from "meyda";
 export class SoundEngine {
     private audioBuffer: AudioBuffer | null = null;
     private audioSource: AudioBufferSourceNode | null = null;
 
-    private static audioCtx: AudioContext = (new (window as any).AudioContext()) ||  (window as any).webkitAudioContext || null;
+    private static audioCtx: AudioContext = (new (window as any).AudioContext()) || (window as any).webkitAudioContext || null;
     private playing = false;
     private saved_time = 0;
 
-    public async LoadSound(blob: ArrayBuffer): Promise<number[]>{
+    public async LoadSound(blob: ArrayBuffer): Promise<number[]> {
         this.audioBuffer = await SoundEngine.audioCtx.decodeAudioData(blob);
         // Finds silence sections in audio and splits it
+        SoundEngine.AnalyzeSound(this.audioBuffer);
         // Gets text to speech for the audio (if enabled)
         // returns the sections that we found
         return []
     }
 
+    private static AnalyzeSound(audio: AudioBuffer) {
+        
+        const bufferSize = 512;
+        Meyda.bufferSize = bufferSize;
+        
+        // chunk the audio up into 512 btye samples
+        const rms_buffer = new Float32Array(audio.length / bufferSize)
+        for (var index = 0; index < audio.length; index += bufferSize) {
+            const temp = new Float32Array(bufferSize);
+            for (var channel = 0; channel < audio.numberOfChannels; channel += 1) {
+                audio.copyFromChannel(temp, channel, index);
+                const features = Meyda.extract(['rms'], temp);
+                rms_buffer[index/bufferSize] = features["rms"];
+            }
+        }
+        const max = rms_buffer.reduce((a,b) => a > b? a : b, -Infinity);
+        const min = rms_buffer.reduce((a,b) => a < b? a : b, Infinity);
+        const avg = rms_buffer.reduce((a,b) => a + b, 0) / rms_buffer.length
+        console.log(max, min, avg);
+        console.log(rms_buffer);
+        //we need to return the sample index of the 
+    }
+
     /**
-     * Returns the duration of the current music
+     * Returns the duration of the current music in seconds
      */
     public get duration() {
         if (this.audioBuffer == null) {
@@ -47,7 +72,7 @@ export class SoundEngine {
     public Pause(): boolean {
         if (this.audioSource == null || this.audioBuffer == null) {
             return false;
-        } 
+        }
         if (!this.playing) {
             return false;
         }
@@ -84,7 +109,7 @@ export class SoundEngine {
         if (ms >= (this.audioBuffer.duration * 1000)) {
             return false;
         }
-        if (this.playing){
+        if (this.playing) {
             this.Stop();
             this.saved_time = ms;
             this.Play();
@@ -93,7 +118,7 @@ export class SoundEngine {
             this.saved_time = ms;
         }
         console.log("seeked to ", this.saved_time);
-        
+
         return true;
     }
 }
