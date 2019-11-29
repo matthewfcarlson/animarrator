@@ -8,20 +8,31 @@ export class SoundEngine {
     private playing = false;
     private saved_time = 0;
 
+    /**
+     * Loads a sound in
+     * @param blob 
+     */
     public async LoadSound(blob: ArrayBuffer): Promise<number[]> {
         this.audioBuffer = await SoundEngine.audioCtx.decodeAudioData(blob);
         // Finds silence sections in audio and splits it
-        SoundEngine.AnalyzeSound(this.audioBuffer);
+        const section_starts = SoundEngine.SegmentSound(this.audioBuffer);
+        console.log(section_starts);
         // Gets text to speech for the audio (if enabled)
         // returns the sections that we found
-        return []
+        return section_starts
     }
 
-    private static AnalyzeSound(audio: AudioBuffer) {
-        
-        const bufferSize = 512;
+    /**
+     * Analyzes a sound
+     * @param audio the audio buffer
+     * @returns a list of section starts in milliseconds
+     */
+    private static SegmentSound(audio: AudioBuffer): number[] {
+
+        const bufferSize = 64;
         Meyda.bufferSize = bufferSize;
-        
+        const buffers_per_second = audio.sampleRate / bufferSize;
+
         // chunk the audio up into 512 btye samples
         const rms_buffer = new Float32Array(audio.length / bufferSize)
         for (var index = 0; index < audio.length; index += bufferSize) {
@@ -29,15 +40,50 @@ export class SoundEngine {
             for (var channel = 0; channel < audio.numberOfChannels; channel += 1) {
                 audio.copyFromChannel(temp, channel, index);
                 const features = Meyda.extract(['rms'], temp);
-                rms_buffer[index/bufferSize] = features["rms"];
+                rms_buffer[index / bufferSize] = features["rms"];
             }
         }
-        const max = rms_buffer.reduce((a,b) => a > b? a : b, -Infinity);
-        const min = rms_buffer.reduce((a,b) => a < b? a : b, Infinity);
-        const avg = rms_buffer.reduce((a,b) => a + b, 0) / rms_buffer.length
+        const max = rms_buffer.reduce((a, b) => a > b ? a : b, -Infinity);
+        const min = rms_buffer.reduce((a, b) => a < b ? a : b, Infinity);
+        const avg = rms_buffer.reduce((a, b) => a + b, 0) / rms_buffer.length
         console.log(max, min, avg);
-        console.log(rms_buffer);
-        //we need to return the sample index of the 
+        //console.log(rms_buffer);
+        let prev_rms = 0;
+        let last_section = 0;
+        const upper_threshold = avg * 1.5;
+        const lower_threshold = avg * 0.75;
+        let section_starts = [];
+        const minim_section_length = buffers_per_second / 5; //at least 1/5th of a second
+        console.log("Finding sections of at least ", minim_section_length);
+        let talking = false;
+        let rms_results = []
+        for (var i = 0; i < rms_buffer.length; i++) {
+            const rms = rms_buffer[i];
+            prev_rms *= 0.9;
+
+            const curr_rms = prev_rms + rms;
+            if (i - last_section > minim_section_length) {
+                if (curr_rms > upper_threshold && !talking) {
+                    section_starts.push(i);
+                    last_section = i;
+                    talking = true;
+                }
+                else if (curr_rms < lower_threshold && talking) {
+                    // how to detect silence?
+                    talking = false;
+                }
+            }
+            rms_results.push(curr_rms);
+            prev_rms = curr_rms;
+        }
+        //console.log(rms_results);
+        console.log(section_starts);
+        const buffers_per_ms = 1000 / audio.sampleRate * bufferSize;
+        console.log("Buffers per MS", buffers_per_ms)
+        const section_start_time_ms = section_starts.map(x => x / buffers_per_ms);
+
+        //we need to return the sample index of the
+        return section_start_time_ms;
     }
 
     /**

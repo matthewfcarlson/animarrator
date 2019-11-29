@@ -5,6 +5,7 @@
 
 import AnimationFrame from 'animation-frame';
 import { SoundEngine } from '../sound';
+import VisbilityManager from './visibility';
 //const debug = process.env.NODE_ENV !== 'production';
 
 export class AnimationDirector {
@@ -23,6 +24,11 @@ export class AnimationDirector {
     private constructor() {
         this.Reset();
         this.audio = new SoundEngine();
+
+        //Visibility stuff
+        VisbilityManager.Notify("hide", (_args: any[]) => {
+            AnimationDirector.Instance.Pause() // we should pause
+        });
     }
 
     public static get Instance() {
@@ -74,12 +80,16 @@ export class AnimationDirector {
 
     public static async LoadAudio(blob: ArrayBuffer) {
         // Loads Audio into the project
-        this.Instance.Reset();        
+        this.Instance.Reset();
 
         // Figures out the number of frames given the frame rate
-        const splits = await this.Instance.audio.LoadSound(blob);
+        const splits_ms = await this.Instance.audio.LoadSound(blob);
         const audioDuration = this.Instance.audio.duration;
         this.Instance.frameLength = audioDuration * this.Instance.frameRate;
+        const frame_rate = this.Instance.frameRate;
+        // we need to convert millisecond times into frame numbers
+        const splits = splits_ms.map(x => Math.round(x * frame_rate / 1000));
+        console.log(splits);
         this.Instance.splits.concat(splits);
         console.log("Duration ", audioDuration);
         console.log("Frames ", audioDuration * this.Instance.frameRate);
@@ -126,6 +136,7 @@ export class AnimationDirector {
      */
     public Pause() {
         if (this.animateFrameId != null && this.animationFrame != null) this.animationFrame.cancel(this.animateFrameId);
+        this.playing = false;
         this.audio.Pause();
     }
 
@@ -142,7 +153,8 @@ export class AnimationDirector {
         const split = this.frameNumber;
         if (this.splits.indexOf(split) != -1) return; // We can't add a split that already exists?
         this.splits.push(this.frameNumber);
-        this.splits = this.splits.sort();
+        this.splits = this.splits.sort((a, b) => a - b);
+        console.log(this.splits);
     }
 
     public PrevSection() {
