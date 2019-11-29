@@ -90,12 +90,13 @@ export class AnimationDirector {
         // we need to convert millisecond times into frame numbers
         const splits = splits_ms.map(x => Math.round(x * frame_rate / 1000));
         console.log(splits);
-        this.Instance.splits.concat(splits);
+        this.Instance.splits = this.Instance.splits.concat(splits);
         console.log("Duration ", audioDuration);
         console.log("Frames ", audioDuration * this.Instance.frameRate);
         console.log("FrameRate ", this.Instance.frameRate);
         console.log("Frames ", this.Instance.frameLength);
         console.log("Splits ", this.Instance.splits);
+        //TODO - I need to figure out why this isn't working
 
     }
 
@@ -149,6 +150,17 @@ export class AnimationDirector {
         this.frameNumber = 0;
     }
 
+    /**
+     * The number of milliseconds to seek to
+     * @param ms The number of milliseconds to seek to
+     */
+    public Seek(ms: number) {
+        console.log("Seeking to ", ms);
+        //convert ms to frame rate
+        const frameNumber = ms * this.frameRate / 1000;
+        this.frameNumber = frameNumber;
+    }
+
     public Split() {
         const split = this.frameNumber;
         if (this.splits.indexOf(split) != -1) return; // We can't add a split that already exists?
@@ -158,9 +170,21 @@ export class AnimationDirector {
     }
 
     public PrevSection() {
-        throw new Error("Method not implemented.");
+        //Get the current section
+        const newScene = this.CurrentScene - 3;
+        if (newScene < 0  || newScene >= this.splits.length) {
+            return;
+        }
+        const frameNumber = this.splits[newScene] + 1;
+        this.Seek(1000*frameNumber / this.frameRate);
     }
     public NextSection() {
-        throw new Error("Method not implemented.");
+        const newScene = this.CurrentScene - 1;
+        if (newScene < 0  || newScene >= this.splits.length) {
+            return;
+        }
+        const frameNumber = this.splits[newScene] + 1;
+        //convert frame number to milliseconds
+        this.Seek(1000*frameNumber / this.frameRate);
     }
 }
