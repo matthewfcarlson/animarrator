@@ -6,6 +6,7 @@
 import AnimationFrame from 'animation-frame';
 import { SoundEngine } from '../sound';
 import { Serializable, ProjectListing } from '../storage';
+import VisbilityManager from './visibility';
 //const debug = process.env.NODE_ENV !== 'production';
 
 export class AnimationDirector implements Serializable {
@@ -26,6 +27,11 @@ export class AnimationDirector implements Serializable {
         this.Reset();
         this.audio = new SoundEngine();
         this.currentProject = null;
+
+        //Visibility stuff
+        VisbilityManager.Notify("hide", (_args: any[]) => {
+            AnimationDirector.Instance.Pause() // we should pause
+        });
     }
 
     public static get Instance() {
@@ -105,17 +111,22 @@ export class AnimationDirector implements Serializable {
             var splits: number[] = [];
         }
         else {
-            var splits = await this.Instance.audio.LoadSound(blob);
+            const splits_ms = await this.Instance.audio.LoadSound(blob);
+            var splits = splits_ms.map(x => Math.round(x * frame_rate / 1000));
         }
         const audioDuration = this.Instance.audio.duration;
         this.Instance.frameLength = audioDuration * this.Instance.frameRate;
-        this.Instance.splits.concat(splits);
+        const frame_rate = this.Instance.frameRate;
+        // we need to convert millisecond times into frame numbers
+        console.log(splits);
+        this.Instance.splits = this.Instance.splits.concat(splits);
         console.log("Duration ", audioDuration);
         console.log("Frames ", audioDuration * this.Instance.frameRate);
         console.log("FrameRate ", this.Instance.frameRate);
         console.log("Frames ", this.Instance.frameLength);
         console.log("Splits ", this.Instance.splits);
         return true;
+        //TODO - I need to figure out why this isn't working
 
     }
 
@@ -156,6 +167,7 @@ export class AnimationDirector implements Serializable {
      */
     public Pause() {
         if (this.animateFrameId != null && this.animationFrame != null) this.animationFrame.cancel(this.animateFrameId);
+        this.playing = false;
         this.audio.Pause();
         this.playing = false;
     }
@@ -170,18 +182,42 @@ export class AnimationDirector implements Serializable {
         this.playing = false;
     }
 
+    /**
+     * The number of milliseconds to seek to
+     * @param ms The number of milliseconds to seek to
+     */
+    public Seek(ms: number) {
+        console.log("Seeking to ", ms);
+        //convert ms to frame rate
+        const frameNumber = ms * this.frameRate / 1000;
+        this.frameNumber = frameNumber;
+    }
+
     public Split() {
         const split = this.frameNumber;
         if (this.splits.indexOf(split) != -1) return; // We can't add a split that already exists?
         this.splits.push(this.frameNumber);
-        this.splits = this.splits.sort();
+        this.splits = this.splits.sort((a, b) => a - b);
+        console.log(this.splits);
     }
 
     public PrevSection() {
-        throw new Error("Method not implemented.");
+        //Get the current section
+        const newScene = this.CurrentScene - 3;
+        if (newScene < 0  || newScene >= this.splits.length) {
+            return;
+        }
+        const frameNumber = this.splits[newScene] + 1;
+        this.Seek(1000*frameNumber / this.frameRate);
     }
     public NextSection() {
-        throw new Error("Method not implemented.");
+        const newScene = this.CurrentScene - 1;
+        if (newScene < 0  || newScene >= this.splits.length) {
+            return;
+        }
+        const frameNumber = this.splits[newScene] + 1;
+        //convert frame number to milliseconds
+        this.Seek(1000*frameNumber / this.frameRate);
     }
 
     public Load(_str: string): boolean {
