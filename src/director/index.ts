@@ -104,6 +104,7 @@ export class AnimationDirector implements Serializable {
     public static async LoadAudio(blob: ArrayBuffer | SoundEngine) : Promise<boolean>{
         // Loads Audio into the project
         this.Instance.Reset();
+        const frame_rate = this.Instance.frameRate;
 
         // Figures out the number of frames given the frame rate
         if (blob instanceof SoundEngine) {
@@ -116,7 +117,6 @@ export class AnimationDirector implements Serializable {
         }
         const audioDuration = this.Instance.audio.duration;
         this.Instance.frameLength = audioDuration * this.Instance.frameRate;
-        const frame_rate = this.Instance.frameRate;
         // we need to convert millisecond times into frame numbers
         console.log(splits);
         this.Instance.splits = this.Instance.splits.concat(splits);
