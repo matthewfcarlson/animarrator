@@ -5,9 +5,10 @@
 
 import AnimationFrame from 'animation-frame';
 import { SoundEngine } from '../sound';
+import { Serializable, ProjectListing } from '../storage';
 //const debug = process.env.NODE_ENV !== 'production';
 
-export class AnimationDirector {
+export class AnimationDirector implements Serializable {
     private animateFrameId!: number | null;
     private frameLength!: number;
     private animationFrame!: AnimationFrame | null;
@@ -16,13 +17,15 @@ export class AnimationDirector {
     private splits: number[] = []; // the frame numbers that we split at (split starts at that frame)
     private playing!: boolean;
     private audio: SoundEngine;
+    private currentProject: ProjectListing | null;
     //private startRequestTime = 0;
 
     private static _instance: AnimationDirector;
-    
+
     private constructor() {
         this.Reset();
         this.audio = new SoundEngine();
+        this.currentProject = null;
     }
 
     public static get Instance() {
@@ -43,10 +46,10 @@ export class AnimationDirector {
     public get CurrentScene() {
         // TODO calculate what scene we are in?
         var scene = 1;
-        for (var i=0; i < this.splits.length; i++){
+        for (var i = 0; i < this.splits.length; i++) {
             const split = this.splits[i];
             if (split > this.frameNumber) return scene;
-            else scene = i+2;
+            else scene = i + 2;
         }
         return scene;
     }
@@ -69,15 +72,41 @@ export class AnimationDirector {
         this.frameRate = 30;
         this.playing = false;
         this.animateFrameId = null;
+        this.currentProject = null;
         this.splits.splice(0, this.splits.length); // remove all the elements in the array
     }
 
-    public static async LoadAudio(blob: ArrayBuffer) {
+    /**
+     * Sets the current project
+     * @param proj the listing that we are setting oursevles to
+     */
+    public static SetProject(proj: ProjectListing): boolean {
+        if (this.Instance.currentProject == null) {
+            return false;
+        }
+        this.Instance.currentProject = proj;
+        return true;
+    }
+
+    /**
+     * Gets the current project
+     */
+    public static GetProject(): ProjectListing|null {
+        return this.Instance.currentProject;
+    }
+
+    public static async LoadAudio(blob: ArrayBuffer | SoundEngine) : Promise<boolean>{
         // Loads Audio into the project
-        this.Instance.Reset();        
+        this.Instance.Reset();
 
         // Figures out the number of frames given the frame rate
-        const splits = await this.Instance.audio.LoadSound(blob);
+        if (blob instanceof SoundEngine) {
+            this.Instance.audio = blob;
+            var splits: number[] = [];
+        }
+        else {
+            var splits = await this.Instance.audio.LoadSound(blob);
+        }
         const audioDuration = this.Instance.audio.duration;
         this.Instance.frameLength = audioDuration * this.Instance.frameRate;
         this.Instance.splits.concat(splits);
@@ -86,6 +115,7 @@ export class AnimationDirector {
         console.log("FrameRate ", this.Instance.frameRate);
         console.log("Frames ", this.Instance.frameLength);
         console.log("Splits ", this.Instance.splits);
+        return true;
 
     }
 
@@ -127,6 +157,7 @@ export class AnimationDirector {
     public Pause() {
         if (this.animateFrameId != null && this.animationFrame != null) this.animationFrame.cancel(this.animateFrameId);
         this.audio.Pause();
+        this.playing = false;
     }
 
     /**
@@ -136,6 +167,7 @@ export class AnimationDirector {
         this.Pause();
         this.audio.Stop();
         this.frameNumber = 0;
+        this.playing = false;
     }
 
     public Split() {
@@ -150,5 +182,17 @@ export class AnimationDirector {
     }
     public NextSection() {
         throw new Error("Method not implemented.");
+    }
+
+    public Load(_str: string): boolean {
+        throw new Error("Method not implemented.");
+    }
+    public Save(): string {
+        const obj = {
+            "splits": this.splits,
+            "audio": this.audio.Save(),
+
+        };
+        return JSON.stringify(obj);
     }
 }

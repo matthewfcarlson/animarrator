@@ -45,6 +45,7 @@ export default class Studio extends Vue {
   right: 15px;
   bottom:0;
   height: 48px;
+  overflow: hidden;
 }
 </style>
 

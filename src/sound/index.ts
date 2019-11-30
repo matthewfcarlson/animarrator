@@ -1,5 +1,6 @@
+import { Serializable } from "../storage";
 
-export class SoundEngine {
+export class SoundEngine implements Serializable {
     private audioBuffer: AudioBuffer | null = null;
     private audioSource: AudioBufferSourceNode | null = null;
 
@@ -95,5 +96,12 @@ export class SoundEngine {
         console.log("seeked to ", this.saved_time);
         
         return true;
+    }
+    //S
+    Load(_str: string): boolean {
+        throw new Error("Method not implemented.");
+    }
+    Save(): string {
+        throw new Error("Method not implemented.");
     }
 }

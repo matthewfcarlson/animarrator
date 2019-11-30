@@ -67,6 +67,9 @@
 				<a href="#animation-studio" id="animation-studio" style="color: inherit; text-decoration: none;">
 					<h1>ANIMATION STUDIO</h1>
 				</a>
+				<a href="#emnarration-based-animation-with-minimal-effortem" id="emnarration-based-animation-with-minimal-effortem" style="color: inherit; text-decoration: none;">
+					<h3><em>Narration based Animation with minimal effort</em></h3>
+				</a>
 				<p>A NodeJS powered animation studio app for creating animated videos from SVGs for narrated informational videos.
 				It runs in your browser, using localstorage and files to create and load files.</p>
 				<a href="#how-do-i-use-it" id="how-do-i-use-it" style="color: inherit; text-decoration: none;">
@@ -74,11 +77,20 @@
 				</a>
 				<p>It allows users to draw simple drawings and convert them to SVG.
 				The general workflow is to have the audio first so the timing can be synced to the music/narration.</p>
+				<ol>
+					<li>Import your finished production quality audio/narration</li>
+					<li>We will detect pauses and optionally do speech to text translation to give you the sections of your video.</li>
+					<li>Choose what each section will animate as (whether to keep the previous section on screen, background, etc)</li>
+					<li>Select timing for that section (one line at a time, all at once, delayed, and draw speed)</li>
+				</ol>
 				<a href="#todo" id="todo" style="color: inherit; text-decoration: none;">
 					<h2>TODO</h2>
 				</a>
 				<ul>
 					<li>Create canvas and settings</li>
+					<li>Save &amp; Load Projects</li>
+					<li>Detect pauses/gaps</li>
+					<li>Detect</li>
 					<li>Better name</li>
 					<li>Logo?</li>
 					<li>Setup video production pipeline</li>
@@ -101,6 +113,15 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/soundengine.html" class="tsd-kind-icon">Sound<wbr>Engine</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/storageengine.html" class="tsd-kind-icon">Storage<wbr>Engine</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/projectlisting.html" class="tsd-kind-icon">Project<wbr>Listing</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/serializable.html" class="tsd-kind-icon">Serializable</a>
 					</li>
 				</ul>
 			</nav>
